@@ -1,0 +1,11 @@
+{
+    "name": "li_ok/rbadvogados",
+    "description": "RB Advogado",
+    "authors": [
+        {
+            "name": "Eliasafe",
+            "email": "li_okay@hotmail.com"
+        }
+    ],
+    "require": {}
+}

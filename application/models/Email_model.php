@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Publicacao_model extends CI_Model {
+class Email_model extends CI_Model {
 
-    private $table = 'publicacoes';
-    var $column_order = array(null,'id', 'titulo','texto','data','horario'); //set column field database for datatable orderable
-    var $column_search = array('id','titulo','texto','data','horario'); //set column field database for datatable searchable 
+    private $table = 'emails';
+    var $column_order = array(null,'id', 'email'); //set column field database for datatable orderable
+    var $column_search = array('id','email'); //set column field database for datatable searchable 
     var $order = array('id' => 'desc'); // default order 
 
 
@@ -79,42 +79,17 @@ class Publicacao_model extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    public function registrar_publicacao(){
-        date_default_timezone_set('America/Sao_Paulo');
-        $insert = [
-            'titulo' => $this->input->post('titulo'),
-            'texto' => $this->input->post('texto'),
-            'data' => date("y-m-d"),
-            'horario' => date("H-i-s"),
-            'images' => $this->upload->data('file_name')
-        ];
-
-        if($this->db->insert('publicacoes', $insert)):
+     public function registrar_email(){
+        if($this->db->insert('emails',array('email' => $this->input->post('email')))):
             return true;
         endif;
     }
 
-    public function find($id = null){
-        if($id ==null):
-                $this->db->limit(3);
-                 $this->db->order_by('id','desc');
-                 $query = $this->db->get($this->table);
-            if($query->num_rows() > 0):
-                    return $query->result();
-                else:
-                    return false;
-            endif;
-            // se não for nullo
-            else:
-                    $this->db->where('id', $id);
-                    $query = $this->db->get($this->table);
-                    return $query->row();
-        endif;
-    }
+    function find_all(){
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get('emails');
 
-    public function delete_publicacao($id){
-              $this->db->delete($this->table, array("id" => $id));
-                return true;
+        return $query->result_array();
     }
 
 

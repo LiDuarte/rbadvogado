@@ -57,15 +57,15 @@
             </div>  
             <div class="clearfix"> </div>
         </div>  
-        <form action="#" method="post">
+        <form method="post" action="<?php echo base_url('contato/enviar/'); ?>">
             <div class="col-sm-6 contact-left">
-                <input type="text" name="Name" placeholder="Seu Nome" required="">
-                <input type="email" name="Email" placeholder="Email" required="">
-                <input type="text" name="Mobile Number" placeholder="Telefone">
+                <input type="text" name="nome" placeholder="Seu Nome" required="">
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="text" name="telefone" placeholder="Telefone">
             </div>
             <div class="col-sm-6 contact-right"> 
-                <textarea name="Message" placeholder="Mensagem" required=""></textarea>
-                <input type="submit" value="Enviar" >
+                <textarea name="mensagem" placeholder="Mensagem" required=""></textarea>
+                <input type="submit" name="enviar" value="Enviar" >
             </div>
             <div class="clearfix"></div>
         </form>

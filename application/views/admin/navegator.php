@@ -13,10 +13,10 @@
           </a>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Emails">
-          <a class="nav-link" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-dashboard">Emails Cadastrados</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="<?= base_url('administrador/emails'); ?>">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Emails</span>
           </a>
         </li>
 

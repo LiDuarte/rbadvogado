@@ -7,6 +7,7 @@ class Administrador extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
 
+
         
         if($this->session->userdata('logged_in') != true):
             redirect('login/autentica');
@@ -26,6 +27,23 @@ class Administrador extends CI_Controller {
     public function publicacao(){
         $dados = array(
             'page' => 'publicacao'
+        );
+
+        $this->load->view('admin/administrador_master', $dados);
+    }
+
+    public function publicar(){
+         $this->load->library("upload");
+         $dados = array(
+            'page' => 'publicar'
+        );
+
+        $this->load->view('admin/administrador_master', $dados);
+    }
+
+    public function emails(){
+         $dados = array(
+            'page' => 'emails'
         );
 
         $this->load->view('admin/administrador_master', $dados);

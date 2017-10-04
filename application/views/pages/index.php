@@ -34,38 +34,34 @@
             <a href="publicacoes.php"><h3 class="agileits-title">Publicações</h3></a>
  
         <div class="row">
+        <?php   if($publicacao != null): ?>
+        <?php   foreach($publicacao as $post): ?>
+
             <div class="col">
               
               <div class="card" style="width: 30rem;">
-                  <img class="card-img-top" src="<?= base_url('assets/images/logo2.png') ?>" alt="Card image cap">
+                  <img class="card-img-top" src="<?= base_url('upload/publicacao/').$post->images; ?>" alt="Card image cap">
                   <div class="card-body">
-                    <h4 class="card-title">Título</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h4 class="card-title"><?php    echo $post->titulo; ?></h4>
+                    <p class="card-text"><?= substr($post->texto, 0,150)."..."; ?></p>
                     <a href="#" class="btn btn-primary">Continue</a>
                   </div>
                 </div>
         </div>
- 
-        <div class="col">
-             <div class="card" style="width: 30rem;">
-                  <img class="card-img-top" src="<?= base_url('assets/images/logo2.png') ?>" alt="Card image cap">
+
+    <?php   endforeach; ?>
+<?php   else: ?>
+     <div class="col">
+              
+              <div class="card" style="width: 100%;">
                   <div class="card-body">
-                    <h4 class="card-title">Título</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Continue</a>
+                        <h4>Não há nenhuma publicações.</h4>
                   </div>
                 </div>
         </div>
+
+<?php   endif; ?>
  
-        <div class="col">
-             <div class="card" style="width: 30rem;">
-                  <img class="card-img-top" src="<?= base_url('assets/images/logo2.png') ?>" alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title"> Título</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Continue</a>
-                  </div>
-                </div>
         </div>
      </div>
     </div>

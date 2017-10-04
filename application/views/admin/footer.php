@@ -40,50 +40,115 @@
     <script src="<?= base_url('admin/js/sb-admin.min.js'); ?>"></script>
     <script src="<?= base_url('admin/js/sb-admin-datatables.min.js'); ?>"></script>
 
-
     <script>
-       var table;
-      table = $('#publicacoes').DataTable( {
-        "serverSide": true,
+     var table;
+     table = $('#emails').DataTable( {
+      "serverSide": true,
         "processing": true, //Feature control the processing indicator.
         "order": [], //Initial no order.
         "oLanguage": {
-            "sProcessing": "Processando Publicações...",
-            "sLengthMenu": "Mostrar _MENU_ registros de Publicações",
-            "sZeroRecords": "Não foram encontrados resultados de Publicações",
-            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando de 0 até 0 de 0 registros",
-            "sInfoFiltered": "",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar por:",
-            "sUrl": "",
-            "oPaginate": {
-                "sFirst": "Primeiro",
-                "sPrevious": "Anterior",
-                "sNext": "Seguinte",
-                "sLast": "Último"
-            }
+          "sProcessing": "Processando Emails...",
+          "sLengthMenu": "Mostrar _MENU_ registros de Emails",
+          "sZeroRecords": "Não foram encontrados resultados de Emails",
+          "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+          "sInfoEmpty": "Mostrando de 0 até 0 de 0 registros",
+          "sInfoFiltered": "",
+          "sInfoPostFix": "",
+          "sSearch": "Buscar por:",
+          "sUrl": "",
+          "oPaginate": {
+            "sFirst": "Primeiro",
+            "sPrevious": "Anterior",
+            "sNext": "Seguinte",
+            "sLast": "Último"
+          }
         },
 
-          ajax: {
-              url: '<?= base_url('js/publicacao_js/index'); ?>',
-              type: 'POST'
-          },
+        ajax: {
+          url: '<?= base_url('js/emails_js/index'); ?>',
+          type: 'POST'
+        },
       });
 
   // ATUALIZA TABLE DE POSTS AO CLICAR EM ATUALIZAR
 
   $("#atualizar").click(function(){
-      var table = $('#publicacoes').DataTable();
+    var table = $('#publicacoes').DataTable();
       table.ajax.reload( null, false ); // user paging is not reset on reload
+    });
+
+  </script>
+
+  <script>
+   var table;
+   table = $('#publicacoes').DataTable( {
+    "serverSide": true,
+        "processing": true, //Feature control the processing indicator.
+        "order": [], //Initial no order.
+        "oLanguage": {
+          "sProcessing": "Processando Publicações...",
+          "sLengthMenu": "Mostrar _MENU_ registros de Publicações",
+          "sZeroRecords": "Não foram encontrados resultados de Publicações",
+          "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+          "sInfoEmpty": "Mostrando de 0 até 0 de 0 registros",
+          "sInfoFiltered": "",
+          "sInfoPostFix": "",
+          "sSearch": "Buscar por:",
+          "sUrl": "",
+          "oPaginate": {
+            "sFirst": "Primeiro",
+            "sPrevious": "Anterior",
+            "sNext": "Seguinte",
+            "sLast": "Último"
+          }
+        },
+
+        ajax: {
+          url: '<?= base_url('js/publicacao_js/index'); ?>',
+          type: 'POST'
+        },
+      });
+
+  // ATUALIZA TABLE DE POSTS AO CLICAR EM ATUALIZAR
+
+  $("#atualizar").click(function(){
+    var table = $('#publicacoes').DataTable();
+      table.ajax.reload( null, false ); // user paging is not reset on reload
+    });
+
+
+//  Publica 
+  $("#form").submit(function(){
+    var form = new FormData(this);
+    $.ajax({
+        url: '<?php echo site_url("js/Publicacao_js/publicar/") ?>', // Url to which the request is send
+        type: "POST", // Type of request to be send, called as method
+        data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false, // The content type used when sending data to the server.
+        cache: false, // To unable request pages to be cached
+        processData: false, // To send DOMDocument or non processed data file it is set to false
+        success: function (data) {
+          if(data == 'Publicação efetuada !'){
+              $("#error center").html(data);
+              $("#container-error").attr('class','alert alert-success');
+                $('#form').each (function(){
+                    this.reset();
+                });
+          }else{
+              $("#error center").html(data);
+              $("#container-error").attr('class','alert alert-warning');
+          }
+        }
+      });
+
   });
 
+ 
 </script>
-      
-    </script>
-    
-    
-  </div>
+
+
+
+</div>
 </body>
 
 </html>

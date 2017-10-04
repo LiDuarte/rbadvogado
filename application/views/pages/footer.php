@@ -13,9 +13,10 @@
 
 			<div class="col-md-8 w3layouts_footer_grid">
 					<h2>Informativo</h2>
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Cadastre seu email..." required="">
+				<form action="<?= base_url('Contato/registrar_email/'); ?>" method="post">
+					<input type="email" name="email" placeholder="Cadastre seu email..." required="">
 					<input type="submit" value="">
+					
 				</form>
 				<ul class="w3l_footer_nav">
 					<li><a href="index.php" class="active"> Home</a></li>

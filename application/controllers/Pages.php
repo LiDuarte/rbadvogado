@@ -3,9 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages extends CI_Controller {
 
+
+	function __construct(){
+		parent::__construct();
+		$dados['error'] = null;
+	}
 	
 	public function index()
-	{
+	{	
+		$dados['publicacao'] = null;
+		$this->load->database();
+		$this->load->model('Publicacao_model','publicacao');
+		$dados['publicacao'] = $this->publicacao->find();
 
 		$dados['page'] = 'index';
 
